@@ -13,5 +13,18 @@ class CohortViewSet(viewsets.Viewset):
     
     def list(self, request):
         queryset=Users.objects.all()
-        serializer = CohortSerializer(queryset, many=True)
+        serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
+    
+    def retrieve(self, request, pk=None):
+        queryset= Users.objects.all()
+        serializer= UsersSerializer(queryset)
+        return Response(serializer.data)
+    
+    def create(self, request):
+        queryset = Users.objects.create(**request.data)
+        serializer= UsersSerializer(queryset)
+    def update(self, request, pk =None):
+        pass
+    def partial_update(self, request, pk):
+        pass
